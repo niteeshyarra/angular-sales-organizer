@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sales-organizer"
+    }
+  },
+  "defaultProject": "sales-organizer",
+  "cli": {
+    "analytics": "b5eb6131-3888-4349-8d1b-bd49ffedf7da"
+  }
 }
