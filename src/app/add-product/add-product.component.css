@@ -1,0 +1,10 @@
+form{
+    margin: 5rem auto;
+}
+
+h1{
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: rgba(0,0,0,.78);
+}

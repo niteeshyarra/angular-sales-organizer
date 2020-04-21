@@ -7,11 +7,13 @@ import { PostCustomerService } from '../services/customer.service';
     styleUrls: ['./add-customer.component.css']
 })
 export class AddCustomerComponent{
-    constructor(private postCustomerService: PostCustomerService){
+    constructor(private _customerService: PostCustomerService){
 
     }
     customerModel = new Customer('','');
     onSubmit(): void{
-      this.postCustomerService.postCustomer(JSON.stringify(this.customerModel));
+      this._customerService.postCustomer(JSON.stringify(this.customerModel)).subscribe(
+        response => console.log(response.status)
+      );
     }
 }

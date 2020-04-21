@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
-export class PostCustomerService{
+export class PostCustomerService {
     customerPostUrl = "https://localhost:44354/api/Customers";
-    httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'accept': 'application/json'  
-        })
-      };
-    constructor(private httpClient: HttpClient){
+    headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });
+
+    constructor(private httpClient: HttpClient) {
 
     }
-    postCustomer(data): void{
+    postCustomer(data): Observable<HttpResponse<any>> {
         console.log(data);
-        this.httpClient.post(this.customerPostUrl, data, this.httpOptions).subscribe(
-            response => console.log(response)
-        );
+        return this.httpClient.post<any>(this.customerPostUrl, data, {
+            headers: this.headers,
+            observe: "response"
+        });
     }
 }
