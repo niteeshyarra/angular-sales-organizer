@@ -1,13 +1,17 @@
 <div>
     <h1 class="h1">Add Customer</h1>
 </div>
+<div>
+    <p style="text-align: center;" class="alert alert-success" *ngIf="showMessage">
+        <strong>Added Successfully</strong>
+    </p>
+</div>
 <form #customerForm="ngForm" class="col-4" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="firstName" class="bmd-label-floating">Customer Name</label>
-        <input name="name" type="text" class="form-control" id="firstName" 
-                [(ngModel)]="customerModel.name" minlength="1" required #name="ngModel" />
-        <div *ngIf="name.invalid && (name.dirty || name.touched)"
-                class="alert-danger">
+        <input name="name" type="text" class="form-control" id="firstName" [(ngModel)]="customerModel.name"
+            minlength="1" required #name="ngModel" />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert-danger">
             <div *ngIf="name.errors.required">
                 Customer Name is required.
             </div>
@@ -15,8 +19,8 @@
     </div>
     <div class="form-group">
         <label for="phoneNumber" class="bmd-label-floating">Phone Number</label>
-        <input id="phoneNumber" type="tel" name="telphone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" minlength="10" maxlength="10" class="form-control"
-        [(ngModel)]="customerModel.phoneNumber" #telephone="ngModel" required />
+        <input id="phoneNumber" type="tel" name="telphone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" minlength="10"
+            maxlength="10" class="form-control" [(ngModel)]="customerModel.phoneNumber" #telephone="ngModel" required />
         <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)">
             <div class="alert-danger" *ngIf="telephone.errors.required">
                 Phone Number is Required!

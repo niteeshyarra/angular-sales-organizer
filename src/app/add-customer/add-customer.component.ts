@@ -10,10 +10,21 @@ export class AddCustomerComponent{
     constructor(private _customerService: PostCustomerService){
 
     }
+    showMessage = false;
     customerModel = new Customer('','');
+
+    onStatus(status:any){
+      if(status == 200){
+        this.showMessage = true;
+      }
+    }
+
+    toggleShowMessage(){
+      return this.showMessage== false;
+    }
     onSubmit(): void{
       this._customerService.postCustomer(JSON.stringify(this.customerModel)).subscribe(
-        response => console.log(response.status)
+        response => this.onStatus(response.status)
       );
     }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product';
+import { IProduct } from '../models/IProduct';
 
 @Injectable({
     providedIn: 'root'
@@ -10,13 +10,22 @@ export class ProductService {
     constructor(private httpClient: HttpClient) {
 
     }
-    productPostUrl = "https://localhost:44354/api/Products"
-    headers = new HttpHeaders({ 'Content-Type': 'application/json', 'accept': 'application/json' });    
+    baseUrl = "https://localhost:44354/api/Products"
+    headers = new HttpHeaders({ 'content-type': 'application/json', 'accept': 'application/json' });    
 
     postProduct(data: any): Observable<HttpResponse<any>> {
-        return this.httpClient.post<any>(this.productPostUrl, data, {
+        return this.httpClient.post<any>(this.baseUrl, data, {
             headers: this.headers,
             observe: "response"            
         });
+    }
+
+    getProducts(): Observable<IProduct[]>{
+        return this.httpClient.get<IProduct[]>(this.baseUrl);
+    }
+
+    deleteProduct(product: IProduct): Observable<HttpResponse<any>>{
+        console.log(product.productId);
+        return this.httpClient.delete<any>(this.baseUrl + "/" + product.productId);
     }
 }

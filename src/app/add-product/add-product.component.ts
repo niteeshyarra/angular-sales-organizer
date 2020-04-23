@@ -11,11 +11,19 @@ export class AddProductComponent {
 
   constructor(private _productService: ProductService) { }
 
+  showMessage = false;
+
   productModel = new Product('', null);
+
+  onStatus(status:any){
+    if(status == 200){
+      this.showMessage = true;
+    }
+  }
 
   onSubmit(): void {
     this._productService.postProduct(JSON.stringify(this.productModel))
-      .subscribe(response => console.log(response.status));
+      .subscribe(response => this.onStatus(response.status));
   }
 
 }
