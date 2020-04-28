@@ -13,9 +13,14 @@ export class ProductListComponent implements OnInit {
 
   products: IProduct[];
 
-  onDelete(product: IProduct): void {
-    this._productService.deleteProduct(product);
-    this.products.filter(p => p.productId == product.productId);
+  onDelete(product: IProduct, i: number): void {
+    this._productService.deleteProduct(product).subscribe(
+      data => {
+        if(data.status == 200)
+          this.products.splice(i, 1);
+      }
+    );
+    
   }
 
   ngOnInit(): void {
