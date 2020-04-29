@@ -1,12 +1,8 @@
 <div>
     <h1 class="h1">Add Customer</h1>
 </div>
-<div>
-    <p style="text-align: center;" class="alert alert-success" *ngIf="showMessage">
-        <strong>Added Successfully</strong>
-    </p>
-</div>
-<form #customerForm="ngForm" class="col-4" (ngSubmit)="onSubmit()">
+
+<form #customerForm="ngForm" class="col-4" (ngSubmit)="onSubmit(customerForm)">
     <div class="form-group">
         <label for="firstName" class="bmd-label-floating">Customer Name</label>
         <input name="name" type="text" class="form-control" id="firstName" [(ngModel)]="customerModel.name"

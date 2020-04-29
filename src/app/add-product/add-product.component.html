@@ -6,7 +6,7 @@
         <strong>Added Successfully</strong>
     </p>
 </div>
-<form #productForm="ngForm" class="col-4" (ngSubmit)="onSubmit()">
+<form #productForm="ngForm" class="col-4" (ngSubmit)="onSubmit(productForm)">
     <div class="form-group">
         <label for="productName" class="bmd-label-floating">Product Name</label>
         <input name="name" type="text" class="form-control" id="productName" 
